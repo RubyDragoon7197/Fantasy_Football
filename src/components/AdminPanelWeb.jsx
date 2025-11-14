@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Search, Plus, Edit2, Trash2, X, Users, Award, Home, Trophy, Settings, BarChart3, Star, Calendar, Shirt, Activity, Menu, ChevronRight } from 'lucide-react';
 
 export default function AdminPanelWeb() {
-  const [currentSection, setCurrentSection] = useState('dashboard');
+  const [currentSection, setCurrentSection] = useState('users');
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState('create');
   const [modalEntity, setModalEntity] = useState('user');
@@ -39,12 +39,7 @@ export default function AdminPanelWeb() {
   ]);
 
   const menuSections = [
-    { id: 'dashboard', label: 'Dashboard', icon: Home, color: '#27F5F1' },
     { id: 'users', label: 'Usuarios', icon: Users, color: '#2776F5' },
-    { id: 'players', label: 'Jugadores', icon: Award, color: '#27F5AD' },
-    { id: 'leagues', label: 'Ligas', icon: Trophy, color: '#2735F5' },
-    { id: 'analytics', label: 'Analíticas', icon: BarChart3, color: '#78CFF5' },
-    { id: 'settings', label: 'Configuración', icon: Settings, color: '#9333EA' },
   ];
 
   const openModal = (type, entity, item = null) => {
@@ -213,7 +208,7 @@ export default function AdminPanelWeb() {
         <p className="text-gray-400 text-sm">Resumen general del sistema</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
         <div className="rounded-2xl p-6 transform hover:scale-105 transition-all cursor-pointer" style={{ 
           background: 'linear-gradient(135deg, rgba(39, 118, 245, 0.15) 0%, rgba(39, 118, 245, 0.05) 100%)',
           border: '1px solid rgba(39, 118, 245, 0.3)',
@@ -231,70 +226,16 @@ export default function AdminPanelWeb() {
           <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider">Usuarios Totales</p>
           <p className="text-xs mt-2" style={{ color: '#27F5AD' }}>+2 esta semana</p>
         </div>
-
-        <div className="rounded-2xl p-6 transform hover:scale-105 transition-all cursor-pointer" style={{ 
-          background: 'linear-gradient(135deg, rgba(39, 245, 173, 0.15) 0%, rgba(39, 245, 173, 0.05) 100%)',
-          border: '1px solid rgba(39, 245, 173, 0.3)',
-          boxShadow: '0 8px 32px rgba(39, 245, 173, 0.1)'
-        }}>
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-14 h-14 rounded-xl flex items-center justify-center" style={{ background: 'rgba(39, 245, 173, 0.2)' }}>
-              <Award size={28} color="#27F5AD" />
-            </div>
-            <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#27F5AD' }}></div>
-          </div>
-          <p className="text-4xl font-bold mb-2" style={{ color: '#27F5AD', fontFamily: "'Segoe UI', sans-serif" }}>
-            {players.length}
-          </p>
-          <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider">Jugadores Activos</p>
-          <p className="text-xs mt-2" style={{ color: '#27F5AD' }}>+1 hoy</p>
-        </div>
-
-        <div className="rounded-2xl p-6 transform hover:scale-105 transition-all cursor-pointer" style={{ 
-          background: 'linear-gradient(135deg, rgba(39, 53, 245, 0.15) 0%, rgba(39, 53, 245, 0.05) 100%)',
-          border: '1px solid rgba(39, 53, 245, 0.3)',
-          boxShadow: '0 8px 32px rgba(39, 53, 245, 0.1)'
-        }}>
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-14 h-14 rounded-xl flex items-center justify-center" style={{ background: 'rgba(39, 53, 245, 0.2)' }}>
-              <Trophy size={28} color="#2735F5" />
-            </div>
-            <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#2735F5' }}></div>
-          </div>
-          <p className="text-4xl font-bold mb-2" style={{ color: '#2735F5', fontFamily: "'Segoe UI', sans-serif" }}>
-            {leagues.length}
-          </p>
-          <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider">Ligas Totales</p>
-          <p className="text-xs mt-2" style={{ color: '#27F5AD' }}>Todas activas</p>
-        </div>
-
-        <div className="rounded-2xl p-6 transform hover:scale-105 transition-all cursor-pointer" style={{ 
-          background: 'linear-gradient(135deg, rgba(39, 245, 241, 0.15) 0%, rgba(39, 245, 241, 0.05) 100%)',
-          border: '1px solid rgba(39, 245, 241, 0.3)',
-          boxShadow: '0 8px 32px rgba(39, 245, 241, 0.1)'
-        }}>
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-14 h-14 rounded-xl flex items-center justify-center" style={{ background: 'rgba(39, 245, 241, 0.2)' }}>
-              <Activity size={28} color="#27F5F1" />
-            </div>
-            <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#27F5F1' }}></div>
-          </div>
-          <p className="text-4xl font-bold mb-2" style={{ color: '#27F5F1', fontFamily: "'Segoe UI', sans-serif" }}>
-            {leagues.filter(l => l.status === 'En Curso').length}
-          </p>
-          <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider">Ligas Activas</p>
-          <p className="text-xs mt-2" style={{ color: '#27F5AD' }}>En progreso</p>
-        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6">
         <div className="rounded-2xl p-6" style={{ 
           background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%)',
           border: '1px solid rgba(255, 255, 255, 0.1)'
         }}>
           <h3 className="text-white font-bold mb-6 text-lg">Actividad Reciente</h3>
           <div className="space-y-4">
-            {users.slice(0, 3).map((user) => (
+            {users.slice(0, 5).map((user) => (
               <div key={user.id} className="flex items-center gap-4 p-3 rounded-xl" style={{ background: 'rgba(255, 255, 255, 0.03)' }}>
                 <div 
                   className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold"
@@ -307,38 +248,6 @@ export default function AdminPanelWeb() {
                   <p className="text-gray-400 text-xs">Activo hace {user.lastActive}</p>
                 </div>
                 <div className="w-2 h-2 rounded-full" style={{ background: user.status === 'Activo' ? '#27F5AD' : '#78CFF5' }}></div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-2xl p-6" style={{ 
-          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%)',
-          border: '1px solid rgba(255, 255, 255, 0.1)'
-        }}>
-          <h3 className="text-white font-bold mb-6 text-lg">Mejores Jugadores</h3>
-          <div className="space-y-4">
-            {players.sort((a, b) => b.rating - a.rating).slice(0, 3).map((player, index) => (
-              <div key={player.id} className="flex items-center gap-4 p-3 rounded-xl" style={{ background: 'rgba(255, 255, 255, 0.03)' }}>
-                <div className="text-2xl font-bold" style={{ color: index === 0 ? '#FFD700' : index === 1 ? '#C0C0C0' : '#CD7F32' }}>
-                  {index + 1}
-                </div>
-                <div 
-                  className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold"
-                  style={{ background: `linear-gradient(135deg, ${player.color} 0%, ${player.color}cc 100%)` }}
-                >
-                  {player.avatar}
-                </div>
-                <div className="flex-1">
-                  <p className="text-white font-medium text-sm">{player.name}</p>
-                  <p className="text-gray-400 text-xs">{player.team}</p>
-                </div>
-                <div className="text-center">
-                  <div className="flex items-center gap-1">
-                    <Star size={14} color="#FFD700" fill="#FFD700" />
-                    <span className="text-white font-bold text-sm">{player.rating}</span>
-                  </div>
-                </div>
               </div>
             ))}
           </div>
@@ -470,264 +379,9 @@ export default function AdminPanelWeb() {
     );
   };
 
-  const renderPlayers = () => {
-    const filteredPlayers = players.filter(player => 
-      player.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      player.team.toLowerCase().includes(searchTerm.toLowerCase())
-    );
 
-    return (
-      <div className="space-y-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div>
-            <h2 className="text-3xl font-bold mb-2" style={{ color: '#27F5AD' }}>Gestión de Jugadores</h2>
-            <p className="text-gray-400 text-sm">Administra todos los jugadores registrados</p>
-          </div>
-          <button
-            onClick={() => openModal('create', 'player')}
-            className="px-6 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transform hover:scale-105 transition-all"
-            style={{ 
-              background: 'linear-gradient(135deg, #27F5AD 0%, #27F5F1 100%)',
-              color: '#0a0f1e',
-              boxShadow: '0 8px 24px rgba(39, 245, 173, 0.4)'
-            }}
-          >
-            <Plus size={20} />
-            Nuevo Jugador
-          </button>
-        </div>
 
-        <div className="relative">
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2" size={20} style={{ color: '#27F5F1' }} />
-          <input
-            type="text"
-            placeholder="Buscar jugadores por nombre o equipo..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-14 pr-4 py-4 rounded-xl text-white placeholder-gray-500 outline-none"
-            style={{ 
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(39, 245, 241, 0.2)',
-              fontSize: '15px'
-            }}
-          />
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {filteredPlayers.map((player) => (
-            <div 
-              key={player.id}
-              className="rounded-2xl p-6 transform hover:scale-105 transition-all"
-              style={{ 
-                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
-              }}
-            >
-              <div className="flex items-start gap-4 mb-4">
-                <div 
-                  className="w-20 h-20 rounded-xl flex flex-col items-center justify-center text-white font-bold"
-                  style={{ background: `linear-gradient(135deg, ${player.color} 0%, ${player.color}cc 100%)` }}
-                >
-                  <span className="text-xs opacity-80">#{player.number}</span>
-                  <span className="text-xl">{player.avatar}</span>
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-white font-semibold text-lg mb-1">{player.name}</h3>
-                  <p className="text-gray-400 text-sm mb-2">{player.team}</p>
-                  <div className="flex items-center gap-2 text-gray-400 text-xs">
-                    <span>{player.age} años</span>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="w-14 h-14 rounded-xl flex flex-col items-center justify-center mb-1" style={{ 
-                    background: 'rgba(39, 245, 173, 0.2)',
-                    border: '1px solid rgba(39, 245, 173, 0.3)'
-                  }}>
-                    <Star size={16} color="#27F5AD" fill="#27F5AD" />
-                    <p className="text-white font-bold text-sm">{player.rating}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2 mb-4">
-                <span className="px-3 py-2 rounded-lg text-sm font-medium flex items-center gap-1.5" style={{ 
-                  background: `${getPositionColor(player.position)}20`,
-                  color: getPositionColor(player.position),
-                  border: `1px solid ${getPositionColor(player.position)}40`
-                }}>
-                  <Shirt size={16} />
-                  {player.position}
-                </span>
-                <span className="px-3 py-2 rounded-lg text-sm font-medium" style={{ 
-                  background: `${getStatusColor(player.status)}20`,
-                  color: getStatusColor(player.status),
-                  border: `1px solid ${getStatusColor(player.status)}40`
-                }}>
-                  {player.status}
-                </span>
-              </div>
-
-              <div className="flex gap-3">
-                <button 
-                  onClick={() => openModal('edit', 'player', player)}
-                  className="flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 hover:scale-105 transition-all"
-                  style={{ 
-                    background: 'rgba(39, 245, 173, 0.2)',
-                    border: '1px solid rgba(39, 245, 173, 0.4)',
-                    color: '#27F5AD'
-                  }}
-                >
-                  <Edit2 size={18} />
-                  Editar
-                </button>
-                <button 
-                  onClick={() => handleDelete('player', player.id)}
-                  className="w-12 h-12 rounded-xl flex items-center justify-center hover:scale-105 transition-all"
-                  style={{ 
-                    background: 'rgba(245, 39, 87, 0.2)',
-                    border: '1px solid rgba(245, 39, 87, 0.4)'
-                  }}
-                >
-                  <Trash2 size={20} color="#F52757" />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  };
-
-  const renderLeagues = () => {
-    const filteredLeagues = leagues.filter(league => 
-      league.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    return (
-      <div className="space-y-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div>
-            <h2 className="text-3xl font-bold mb-2" style={{ color: '#2735F5' }}>Gestión de Ligas</h2>
-            <p className="text-gray-400 text-sm">Administra todas las ligas y torneos</p>
-          </div>
-          <button
-            onClick={() => openModal('create', 'league')}
-            className="px-6 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transform hover:scale-105 transition-all"
-            style={{ 
-              background: 'linear-gradient(135deg, #2735F5 0%, #2776F5 100%)',
-              color: '#fff',
-              boxShadow: '0 8px 24px rgba(39, 53, 245, 0.4)'
-            }}
-          >
-            <Plus size={20} />
-            Nueva Liga
-          </button>
-        </div>
-
-        <div className="relative">
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2" size={20} style={{ color: '#27F5F1' }} />
-          <input
-            type="text"
-            placeholder="Buscar ligas..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-14 pr-4 py-4 rounded-xl text-white placeholder-gray-500 outline-none"
-            style={{ 
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(39, 245, 241, 0.2)',
-              fontSize: '15px'
-            }}
-          />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredLeagues.map((league) => (
-            <div 
-              key={league.id}
-              className="rounded-2xl p-6 transform hover:scale-105 transition-all"
-              style={{ 
-                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
-              }}
-            >
-              <div className="flex items-start gap-4 mb-4">
-                <div 
-                  className="w-20 h-20 rounded-xl flex items-center justify-center"
-                  style={{ background: `linear-gradient(135deg, ${league.color} 0%, ${league.color}cc 100%)` }}
-                >
-                  <Trophy size={36} color="#fff" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-white font-semibold text-xl mb-2">{league.name}</h3>
-                  <div className="flex items-center gap-2 text-gray-400 text-sm mb-2">
-                    <Calendar size={14} />
-                    <span>{league.startDate}</span>
-                    <span>→</span>
-                    <span>{league.endDate}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="px-3 py-1 rounded-lg text-xs font-medium" style={{ 
-                      background: 'rgba(39, 245, 173, 0.2)',
-                      color: '#27F5AD'
-                    }}>
-                      {league.teams} equipos
-                    </span>
-                    <span className="text-gray-400 text-sm font-semibold">
-                      {league.prize}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2 mb-4">
-                <span className="px-4 py-2 rounded-lg text-sm font-medium" style={{ 
-                  background: 'rgba(39, 118, 245, 0.2)',
-                  color: '#2776F5',
-                  border: '1px solid rgba(39, 118, 245, 0.3)'
-                }}>
-                  {league.type}
-                </span>
-                <span className="px-4 py-2 rounded-lg text-sm font-medium" style={{ 
-                  background: `${getStatusColor(league.status)}20`,
-                  color: getStatusColor(league.status),
-                  border: `1px solid ${getStatusColor(league.status)}40`
-                }}>
-                  {league.status}
-                </span>
-              </div>
-
-              <div className="flex gap-3">
-                <button 
-                  onClick={() => openModal('edit', 'league', league)}
-                  className="flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 hover:scale-105 transition-all"
-                  style={{ 
-                    background: 'rgba(39, 118, 245, 0.2)',
-                    border: '1px solid rgba(39, 118, 245, 0.4)',
-                    color: '#2776F5'
-                  }}
-                >
-                  <Edit2 size={18} />
-                  Editar
-                </button>
-                <button 
-                  onClick={() => handleDelete('league', league.id)}
-                  className="w-12 h-12 rounded-xl flex items-center justify-center hover:scale-105 transition-all"
-                  style={{ 
-                    background: 'rgba(245, 39, 87, 0.2)',
-                    border: '1px solid rgba(245, 39, 87, 0.4)'
-                  }}
-                >
-                  <Trash2 size={20} color="#F52757" />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  };
 
   const renderModal = () => {
     if (!showModal) return null;
@@ -1261,13 +915,13 @@ export default function AdminPanelWeb() {
                 {currentSection === 'settings' && 'Configuración del sistema'}
               </p>
             </div>
-            {(currentSection === 'users' || currentSection === 'players' || currentSection === 'leagues') && (
+            {(currentSection === 'users') && (
               <button
-                onClick={() => openModal('create', currentSection === 'users' ? 'user' : currentSection === 'players' ? 'player' : 'league')}
+                onClick={() => openModal('create', 'user')}
                 className="px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transform hover:scale-105 transition-all"
                 style={{ 
                   background: `linear-gradient(135deg, ${menuSections.find(s => s.id === currentSection)?.color} 0%, ${menuSections.find(s => s.id === currentSection)?.color}cc 100%)`,
-                  color: currentSection === 'players' ? '#0a0f1e' : '#fff',
+                  color: '#fff',
                   boxShadow: `0 8px 24px ${menuSections.find(s => s.id === currentSection)?.color}40`
                 }}
               >
@@ -1279,28 +933,7 @@ export default function AdminPanelWeb() {
         </div>
 
         <div className="p-8">
-          {currentSection === 'dashboard' && renderDashboard()}
           {currentSection === 'users' && renderUsers()}
-          {currentSection === 'players' && renderPlayers()}
-          {currentSection === 'leagues' && renderLeagues()}
-          {currentSection === 'analytics' && (
-            <div className="text-center py-20">
-              <BarChart3 size={80} color="#78CFF5" className="mx-auto mb-6 opacity-50" />
-              <h3 className="text-white text-2xl font-bold mb-3">Analíticas</h3>
-              <p className="text-gray-400 text-lg">
-                Sección de estadísticas y métricas en desarrollo
-              </p>
-            </div>
-          )}
-          {currentSection === 'settings' && (
-            <div className="text-center py-20">
-              <Settings size={80} color="#9333EA" className="mx-auto mb-6 opacity-50" />
-              <h3 className="text-white text-2xl font-bold mb-3">Configuración</h3>
-              <p className="text-gray-400 text-lg">
-                Panel de configuración del sistema en desarrollo
-              </p>
-            </div>
-          )}
         </div>
       </div>
 
