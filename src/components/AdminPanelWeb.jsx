@@ -263,15 +263,16 @@ export default function AdminPanelWeb() {
     );
 
     return (
-      <div className="space-y-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div className="w-full flex justify-center">
+        <div className="space-y-4 sm:space-y-6 w-full max-w-7xl px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-6 lg:py-8">
+        <div className="flex flex-col gap-2 sm:gap-4">
           <div>
-            <h2 className="text-3xl font-bold mb-2" style={{ color: '#2776F5' }}>Gestión de Usuarios</h2>
-            <p className="text-gray-400 text-sm">Administra todos los usuarios del sistema</p>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-1" style={{ color: '#2776F5' }}>Gestión de Usuarios</h2>
+            <p className="text-gray-400 text-xs sm:text-sm">Administra todos los usuarios del sistema</p>
           </div>
           <button
             onClick={() => openModal('create', 'user')}
-            className="px-6 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transform hover:scale-105 transition-all"
+            className="px-4 sm:px-6 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transform hover:scale-105 transition-all w-full sm:w-auto"
             style={{ 
               background: 'linear-gradient(135deg, #2776F5 0%, #2735F5 100%)',
               color: '#fff',
@@ -279,65 +280,65 @@ export default function AdminPanelWeb() {
             }}
           >
             <Plus size={20} />
-            Nuevo Usuario
+            <span>Nuevo Usuario</span>
           </button>
         </div>
 
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2" size={20} style={{ color: '#27F5F1' }} />
+          <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2" size={18} style={{ color: '#27F5F1' }} />
           <input
             type="text"
-            placeholder="Buscar usuarios por nombre o email..."
+            placeholder="Buscar usuarios..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-14 pr-4 py-4 rounded-xl text-white placeholder-gray-500 outline-none"
+            className="w-full pl-10 sm:pl-14 pr-3 sm:pr-4 py-2 sm:py-3 rounded-xl text-xs sm:text-sm text-white placeholder-gray-500 outline-none"
             style={{ 
               background: 'rgba(255, 255, 255, 0.05)',
               border: '1px solid rgba(39, 245, 241, 0.2)',
-              fontSize: '15px'
+              fontSize: '14px'
             }}
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {filteredUsers.map((user) => (
             <div 
               key={user.id}
-              className="rounded-2xl p-6 transform hover:scale-105 transition-all"
+              className="rounded-2xl p-4 sm:p-6 transform hover:scale-105 transition-all"
               style={{ 
                 background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
               }}
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-3 mb-4">
+                <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1">
                   <div 
-                    className="w-16 h-16 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+                    className="w-12 sm:w-16 h-12 sm:h-16 rounded-xl flex-shrink-0 flex items-center justify-center text-white font-bold text-sm sm:text-lg"
                     style={{ background: `linear-gradient(135deg, ${user.color} 0%, ${user.color}cc 100%)` }}
                   >
                     {user.avatar}
                   </div>
-                  <div>
-                    <h3 className="text-white font-semibold text-lg">{user.name}</h3>
-                    <p className="text-gray-400 text-sm">{user.email}</p>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-white font-semibold text-sm sm:text-lg truncate">{user.name}</h3>
+                    <p className="text-gray-400 text-xs sm:text-sm truncate">{user.email}</p>
                   </div>
                 </div>
-                <div className="w-3 h-3 rounded-full" style={{ 
+                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full flex-shrink-0 mt-1" style={{ 
                   background: user.status === 'Activo' ? '#27F5AD' : '#78CFF5',
                   boxShadow: `0 0 12px ${user.status === 'Activo' ? '#27F5AD' : '#78CFF5'}`
                 }}></div>
               </div>
 
-              <div className="flex items-center gap-2 mb-4">
-                <span className="px-3 py-2 rounded-lg text-sm font-medium" style={{ 
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4">
+                <span className="px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-medium" style={{ 
                   background: 'rgba(39, 118, 245, 0.2)',
                   color: '#2776F5',
                   border: '1px solid rgba(39, 118, 245, 0.3)'
                 }}>
                   {user.role}
                 </span>
-                <span className="px-3 py-2 rounded-lg text-sm font-medium" style={{ 
+                <span className="px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-medium" style={{ 
                   background: user.status === 'Activo' ? 'rgba(39, 245, 173, 0.2)' : 'rgba(120, 207, 245, 0.2)',
                   color: user.status === 'Activo' ? '#27F5AD' : '#78CFF5',
                   border: user.status === 'Activo' ? '1px solid rgba(39, 245, 173, 0.3)' : '1px solid rgba(120, 207, 245, 0.3)'
@@ -348,32 +349,33 @@ export default function AdminPanelWeb() {
 
               <p className="text-gray-400 text-xs mb-4">Última actividad: {user.lastActive}</p>
 
-              <div className="flex gap-3">
+              <div className="flex gap-2 sm:gap-3">
                 <button 
                   onClick={() => openModal('edit', 'user', user)}
-                  className="flex-1 py-3 rounded-xl font-medium flex items-center justify-center gap-2 hover:scale-105 transition-all"
+                  className="flex-1 py-2 sm:py-3 rounded-xl font-medium flex items-center justify-center gap-2 hover:scale-105 transition-all text-xs sm:text-sm"
                   style={{ 
                     background: 'rgba(39, 118, 245, 0.2)',
                     border: '1px solid rgba(39, 118, 245, 0.4)',
                     color: '#2776F5'
                   }}
                 >
-                  <Edit2 size={18} />
-                  Editar
+                  <Edit2 size={16} className="sm:w-[18px]" />
+                  <span>Editar</span>
                 </button>
                 <button 
                   onClick={() => handleDelete('user', user.id)}
-                  className="w-12 h-12 rounded-xl flex items-center justify-center hover:scale-105 transition-all"
+                  className="w-10 sm:w-12 h-10 sm:h-12 rounded-xl flex items-center justify-center hover:scale-105 transition-all flex-shrink-0"
                   style={{ 
                     background: 'rgba(245, 39, 87, 0.2)',
                     border: '1px solid rgba(245, 39, 87, 0.4)'
                   }}
                 >
-                  <Trash2 size={20} color="#F52757" />
+                  <Trash2 size={18} color="#F52757" />
                 </button>
               </div>
             </div>
           ))}
+        </div>
         </div>
       </div>
     );
@@ -801,7 +803,7 @@ export default function AdminPanelWeb() {
       fontFamily: "'Inter', 'Segoe UI', sans-serif"
     }}>
       <div 
-        className={`${sidebarCollapsed ? 'w-20' : 'w-64'} transition-all duration-300 border-r flex flex-col`}
+        className={`${sidebarCollapsed ? 'w-16 sm:w-20' : 'w-56 sm:w-64'} transition-all duration-300 border-r flex flex-col`}
         style={{
           background: 'linear-gradient(180deg, rgba(10, 15, 30, 0.95) 0%, rgba(21, 26, 46, 0.95) 100%)',
           borderRight: '1px solid rgba(39, 245, 241, 0.1)'
@@ -896,17 +898,17 @@ export default function AdminPanelWeb() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-auto w-full">
         <div className="sticky top-0 z-10 backdrop-blur-xl border-b" style={{
           background: 'rgba(10, 15, 30, 0.9)',
           borderBottom: '1px solid rgba(39, 245, 241, 0.1)'
         }}>
-          <div className="px-8 py-6 flex items-center justify-between">
+          <div className="px-3 sm:px-4 md:px-6 lg:px-8 py-3 sm:py-4 md:py-6 flex flex-col gap-3">
             <div>
-              <h2 className="text-2xl font-bold text-white">
+              <h2 className="text-lg sm:text-2xl font-bold text-white">
                 {menuSections.find(s => s.id === currentSection)?.label || 'Dashboard'}
               </h2>
-              <p className="text-gray-500 text-sm mt-1">
+              <p className="text-gray-500 text-xs sm:text-sm mt-1">
                 {currentSection === 'dashboard' && 'Panel de control general'}
                 {currentSection === 'users' && 'Gestiona los usuarios del sistema'}
                 {currentSection === 'players' && 'Administra jugadores registrados'}
@@ -918,23 +920,22 @@ export default function AdminPanelWeb() {
             {(currentSection === 'users') && (
               <button
                 onClick={() => openModal('create', 'user')}
-                className="px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transform hover:scale-105 transition-all"
+                className="px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transform hover:scale-105 transition-all w-full sm:w-auto"
                 style={{ 
                   background: `linear-gradient(135deg, ${menuSections.find(s => s.id === currentSection)?.color} 0%, ${menuSections.find(s => s.id === currentSection)?.color}cc 100%)`,
                   color: '#fff',
-                  boxShadow: `0 8px 24px ${menuSections.find(s => s.id === currentSection)?.color}40`
+                  boxShadow: `0 8px 24px ${menuSections.find(s => s.id === currentSection)?.color}40`,
+                  fontSize: '13px'
                 }}
               >
-                <Plus size={20} />
-                Crear Nuevo
+                <Plus size={16} className="sm:w-5 sm:h-5" />
+                <span>Crear Usuario</span>
               </button>
             )}
           </div>
         </div>
 
-        <div className="p-8">
-          {currentSection === 'users' && renderUsers()}
-        </div>
+        {currentSection === 'users' && renderUsers()}
       </div>
 
       {renderModal()}
